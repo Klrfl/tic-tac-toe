@@ -1,0 +1,5 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 8ch);
+  gap: 0.5rem;
+}

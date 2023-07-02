@@ -1,0 +1,39 @@
+header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.logos {
+  text-align: center;
+}
+
+.logo {
+  margin-inline: 0.5rem;
+}
+
+.logo--react {
+  animation: 10s rotate ease infinite alternate-reverse;
+}
+
+.btn {
+  text-align: center;
+  margin-block: 0.5rem;
+}
+
+.btn--reset {
+  background: var(--danger);
+  width: 100%;
+  color: #ddd;
+}
+
+.btn--reset:hover {
+  background: transparent;
+  border-color: var(--danger);
+  color: inherit;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
