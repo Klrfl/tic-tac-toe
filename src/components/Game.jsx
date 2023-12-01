@@ -12,7 +12,7 @@ export default function Game() {
   function handlePlay(newSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), newSquares];
     setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+    setCurrentMove(() => currentMove + 1);
     setXTurn(!Xturn);
   }
 
@@ -53,7 +53,7 @@ export default function Game() {
           Xturn={Xturn}
           squares={currentSquares}
           onPlay={handlePlay}
-          currentMove={currentMove}></Board>
+          currentMove={currentMove} />
         <button onClick={resetGame} className="btn btn--reset">
           Reset game
         </button>
