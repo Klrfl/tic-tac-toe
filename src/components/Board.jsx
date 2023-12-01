@@ -2,7 +2,7 @@ import Square from "./Square";
 import "./Board.css";
 
 export default function Board({ Xturn, squares, onPlay, currentMove }) {
-  function handleClick(i) {
+  function handleSquareClick(i) {
     if (squares[i] || calculateWinner(squares, currentMove)) {
       return;
     }
@@ -14,7 +14,7 @@ export default function Board({ Xturn, squares, onPlay, currentMove }) {
   }
 
   const winner = calculateWinner(squares, currentMove);
-  let status = "Next player: " + (Xturn ? "X" : "O");
+  let status = `Next player: ${Xturn ? "X" : "O"}`;
   if (winner) status = `Winner: ${winner}`;
   // false is draw
   else if (winner === false) status = `It's a draw!`;
@@ -30,7 +30,7 @@ export default function Board({ Xturn, squares, onPlay, currentMove }) {
             <Square
               key={index}
               value={square}
-              onSquareClick={() => handleClick(index)}
+              onSquareClick={() => handleSquareClick(index)}
             />
           );
         })}
@@ -40,17 +40,21 @@ export default function Board({ Xturn, squares, onPlay, currentMove }) {
 }
 
 function calculateWinner(squares, move) {
+  if (move === 0) return
   const winningLines = [
+    // horizontal
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
 
+    // vertical
     [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
 
-    [0, 4, 8],
-    [2, 4, 6],
+    // diagonal 
+    [0, 4, 8], // to the right downwards
+    [2, 4, 6], // to the left downwards
   ];
 
   for (let i = 0; i < winningLines.length; i++) {
@@ -59,12 +63,13 @@ function calculateWinner(squares, move) {
     const winningCondition =
       squares[a] && squares[a] === squares[b] && squares[b] === squares[c];
 
-    if (winningCondition) {
-      return squares[a];
-    } else if (move === 9) {
-      // there are 9 squares. if all of them are filled then false
-      return false;
-    }
+    if (winningCondition) return squares[a];
+  }
+
+  // there are 9 squares. if all of them are filled 
+  // and nobody won then draw
+  if (move === 9 && !winningCondition) {
+    return false;
   }
   return null;
 }
