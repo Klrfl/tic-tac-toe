@@ -3,7 +3,8 @@ import "./Board.css";
 
 export default function Board({ Xturn, squares, onPlay, currentMove }) {
   function handleSquareClick(i) {
-    if (squares[i] || calculateWinner(squares, currentMove)) {
+    const { winner } = calculateWinner(squares, currentMove)
+    if (squares[i] || winner) {
       return;
     }
     const newSquares = squares.slice();
@@ -13,11 +14,12 @@ export default function Board({ Xturn, squares, onPlay, currentMove }) {
     onPlay(newSquares);
   }
 
-  const winner = calculateWinner(squares, currentMove);
+  const { winner, winnerSquares } = calculateWinner(squares, currentMove);
+
   let status = `Next player: ${Xturn ? "X" : "O"}`;
-  if (winner) status = `Winner: ${winner}`;
-  // false is draw
-  else if (winner === false) status = `It's a draw!`;
+  if (currentMove === 0) status = `First to go: ${Xturn ? "X" : "O"}`
+  else if (winner) status = `Winner: ${winner}`;
+  else if (winner === false) status = `It's a draw!`; // false is draw
 
   return (
     <>
@@ -25,22 +27,29 @@ export default function Board({ Xturn, squares, onPlay, currentMove }) {
         <h2>{status}</h2>
       </div>
       <div className="game-board">
-        {squares.map((square, index) => {
-          return (
-            <Square
-              key={index}
-              value={square}
-              onSquareClick={() => handleSquareClick(index)}
-            />
-          );
-        })}
+        {
+          winner ? squares.map((square, index) => {
+            for (const winnerSquare of winnerSquares) {
+              return <Square key={index} value={square} className={index === winnerSquare ? "highlight" : ""} />
+            }
+          })
+            :
+            squares.map((square, index) => {
+              return (
+                <Square
+                  key={index}
+                  value={square}
+                  onSquareClick={() => handleSquareClick(index)}
+                />
+              );
+            })}
       </div>
     </>
   );
 }
 
 function calculateWinner(squares, move) {
-  if (move === 0) return
+  if (move === 0) return {}
   const winningLines = [
     // horizontal
     [0, 1, 2],
@@ -63,13 +72,13 @@ function calculateWinner(squares, move) {
     const winningCondition =
       squares[a] && squares[a] === squares[b] && squares[b] === squares[c];
 
-    if (winningCondition) return squares[a];
+    if (winningCondition) return { winner: squares[a], winnerSquares: [a, b, c] };
   }
 
   // there are 9 squares. if all of them are filled 
   // and nobody won then draw
   if (move === 9 && !winningCondition) {
-    return false;
+    return { winner: false };
   }
-  return null;
+  return { winner: null };
 }
