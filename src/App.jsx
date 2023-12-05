@@ -1,9 +1,9 @@
-import Game from "./components/Game";
+import Game from "./components/Game"
 
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import reactLogo from "./assets/react.svg"
+import viteLogo from "/vite.svg"
 
-import "./App.css";
+import "./App.css"
 
 function App() {
   return (
@@ -29,15 +29,15 @@ function App() {
         <h1>React Tic Tac Toe game</h1>
         <p>
           I want to learn React so I followed their tutorial on{" "}
-          <a href="https://react.dev">react.dev</a> and made this very cool tic
-          tac toe game.
+          <a href="https://react.dev">react.dev</a> and made this very cool
+          little Tic Tac Toe game.
         </p>
       </header>
       <main>
-        <Game></Game>
+        <Game />
       </main>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

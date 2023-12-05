@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react"
 import "./Modal.css"
 
-export default function Modal({ closeText = "close", isOpen, hasClosed, children }) {
+export default function Modal({
+  closeText = "close",
+  isOpen,
+  hasClosed,
+  children,
+}) {
   const dialog = useRef(null)
 
   function openModal(isOpen) {

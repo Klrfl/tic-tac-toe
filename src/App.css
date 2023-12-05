@@ -12,7 +12,7 @@ header {
 }
 
 .logo--react {
-  animation: 10s rotate ease infinite alternate-reverse;
+  animation: 10s rotate linear infinite;
 }
 
 .btn {
