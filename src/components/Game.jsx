@@ -58,7 +58,7 @@ export default function Game() {
 
   return (
     <>
-      <Modal isOpen={modalIsOpen} hasClosed={closeModal}>
+      <Modal closeText="Let's get started!" isOpen={modalIsOpen} hasClosed={closeModal}>
         <h2>Who's going first?</h2>
         <p>Sooo... Do you want X or O to go first?</p>
 
