@@ -22,6 +22,7 @@
 
 :root {
   --danger: rgb(188, 26, 26);
+  --accent: #646cff;
 }
 
 a {
@@ -56,10 +57,12 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 250ms ease, background-color 250ms ease;
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent);
 }
 button:focus,
 button:focus-visible {

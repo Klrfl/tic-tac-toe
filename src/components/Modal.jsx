@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import "./Modal.css"
 
 export default function Modal({ isOpen, hasClosed, children }) {
   const dialog = useRef(null)
@@ -18,13 +19,11 @@ export default function Modal({ isOpen, hasClosed, children }) {
   }, [isOpen])
 
   return (
-    <>
-      <dialog ref={dialog} className="modal">
-        <form>
-          <button onClick={(e) => closeModal(e)}>close</button>
-          {children}
-        </form>
-      </dialog>
-    </>
+    <dialog ref={dialog} className="modal">
+      <form onSubmit={(e) => e.preventDefault()}>
+        <button onClick={(e) => closeModal(e)}>Close</button>
+        {children}
+      </form>
+    </dialog>
   )
 }

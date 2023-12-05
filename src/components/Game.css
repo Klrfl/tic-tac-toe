@@ -5,3 +5,13 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.select-btn.active {
+  background: var(--accent);
+}
