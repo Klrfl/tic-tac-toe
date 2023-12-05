@@ -1,5 +1,6 @@
 .game-board {
   display: grid;
-  grid-template-columns: repeat(3, 8ch);
+  grid-template-columns: repeat(3, 12ch);
   gap: 0.5rem;
+  font-size: 1.25rem;
 }

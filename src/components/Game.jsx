@@ -36,9 +36,8 @@ export default function Game() {
     if (window.confirm("are you sure?")) {
       setHistory([Array(9).fill(null)]);
       jumpTo(0);
+      setModalIsOpen(true)
     }
-
-    setModalIsOpen(true)
   }
 
   const moves = history.map((squares, move) => {
